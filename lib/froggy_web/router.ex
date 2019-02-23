@@ -16,6 +16,8 @@ defmodule FroggyWeb.Router do
   scope "/", FroggyWeb do
     pipe_through :browser
 
+    resources("/assignments", AssignmentController)
+
     get "/", PageController, :index
   end
 

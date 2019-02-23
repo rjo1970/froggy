@@ -1,3 +1,11 @@
 /* This file is for your main application css. */
 
+.due-0 { padding: 1em; border-style: dashed; border-color: red; border-width: 5px; }
+.due-1 { padding: 1em; border-style: dashed; border-color: #800; border-width: 5px; }
+.due-2 { padding: 1em; border-style: dashed; border-color: #440; border-width: 5px; }
+.due-3 { padding: 1em; border-style: dashed; border-color: #480; border-width: 5px; }
+.due-4 { padding: 1em; border-style: dashed; border-color: #480; border-width: 5px; }
+.due-5 { padding: 1em; border-style: dashed; border-color: #080; border-width: 5px; }
+
+
 @import "./phoenix.css";
