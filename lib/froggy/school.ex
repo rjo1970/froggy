@@ -13,8 +13,8 @@ defmodule Froggy.School do
 
   ## Examples
 
-      iex> list_assignments()
-      [%Assignment{}, ...]
+  iex> list_assignments()
+  [%Froggy.School.Assignment{}, ...]
 
   """
   def list_assignments do
@@ -29,7 +29,7 @@ defmodule Froggy.School do
   ## Examples
 
       iex> get_assignment!(123)
-      %Assignment{}
+      %Froggy.School.Assignment{}
 
       iex> get_assignment!(456)
       ** (Ecto.NoResultsError)
@@ -43,7 +43,7 @@ defmodule Froggy.School do
   ## Examples
 
       iex> create_assignment(%{field: value})
-      {:ok, %Assignment{}}
+      {:ok, %Froggy.School.Assignment{}}
 
       iex> create_assignment(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -61,7 +61,7 @@ defmodule Froggy.School do
   ## Examples
 
       iex> update_assignment(assignment, %{field: new_value})
-      {:ok, %Assignment{}}
+      {:ok, %Froggy.School.Assignment{}}
 
       iex> update_assignment(assignment, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
@@ -79,7 +79,7 @@ defmodule Froggy.School do
   ## Examples
 
       iex> delete_assignment(assignment)
-      {:ok, %Assignment{}}
+      {:ok, %Froggy.School.Assignment{}}
 
       iex> delete_assignment(assignment)
       {:error, %Ecto.Changeset{}}
@@ -95,7 +95,7 @@ defmodule Froggy.School do
   ## Examples
 
       iex> change_assignment(assignment)
-      %Ecto.Changeset{source: %Assignment{}}
+      %Ecto.Changeset{data: %Froggy.School.Assignment{}}
 
   """
   def change_assignment(%Assignment{} = assignment) do
@@ -107,7 +107,7 @@ defmodule Froggy.School do
   """
 
   def dire_assignments() do
-    from(a in Assignment, order_by: [a.due_date, a.student])
+    from(a in Assignment, where: a.done == ^false, order_by: [a.due_date, a.student])
     |> Repo.all()
   end
 
@@ -118,6 +118,44 @@ defmodule Froggy.School do
   def days_due(%Froggy.School.Assignment{} = assignment) do
     now = Timex.now("EST5EDT")
     due = assignment.due_date |> Timex.to_datetime("EST5EDT")
-    DateTime.diff(due, now) / 86400 |> trunc() |> max(0)
+    (DateTime.diff(due, now) / 86400) |> trunc() |> max(0)
+  end
+
+  def completion_window(%Froggy.School.Assignment{} = assignment) do
+    now = Timex.now("EST5EDT")
+
+    knew_at =
+      assignment.inserted_at
+      |> Timex.to_datetime("UTC")
+
+    due =
+      assignment.due_date
+      |> Timex.to_datetime("EST5EDT")
+
+    whole_time = DateTime.diff(knew_at, due)
+    remain_time = DateTime.diff(now, due)
+
+    (remain_time / whole_time * 100)
+    |> trunc()
+    |> max(0)
+  end
+
+  def weekday_due(assignment) do
+    dow =
+      ~w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
+      |> Enum.with_index()
+      |> Enum.map(fn {a, b} -> {b, a} end)
+      |> Map.new()
+
+    {day, _} = Date.day_of_era(assignment.due_date)
+
+    day_index = rem(day, 7)
+
+    dow[day_index]
+  end
+
+  def complete(assignment_id) do
+    get_assignment!(assignment_id)
+    |> update_assignment(%{done: true})
   end
 end

@@ -13,6 +13,7 @@ defmodule Froggy.SchoolTest do
       subject: "some subject",
       done: false
     }
+
     @update_attrs %{
       description: "some updated description",
       due_date: ~D[2011-05-18],

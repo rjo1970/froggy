@@ -19,6 +19,7 @@ defmodule FroggyWeb.Router do
     resources("/assignments", AssignmentController)
 
     get "/", PageController, :index
+    post "/complete", PageController, :complete
   end
 
   # Other scopes may use custom stacks.

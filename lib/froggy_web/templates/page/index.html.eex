@@ -1,12 +1,16 @@
 <h1>Assignments</h1>
 
 <ul>
-  <%= for assignment <- @dire, due <- [Froggy.School.days_due(assignment)] do %>
+  <%= for assignment <- @dire,
+          due <- [Froggy.School.days_due(assignment)],
+          pct <- [Froggy.School.completion_window(assignment)] do %>
   <li class="due-<%= due %>" style="list-style: none;">
-    <div>Due in <%= due %> days on <%= assignment.due_date %></div>
+    <div>Due in <%= due %> <%= days(due) %> on <%= Froggy.School.weekday_due(assignment) %> <%= assignment.due_date %></div>
+    <div><%= pct %>% of time is left on this project.</div>
     <div><%= assignment.student %></div>
     <div><%= assignment.subject %></div>
     <div><%= assignment.description %></div>
+    <button onclick="reporting.complete(<%= assignment.id %>, '<%= @token %>');">Mark Done</button>
   </li>
   <% end %>
 </ul>
