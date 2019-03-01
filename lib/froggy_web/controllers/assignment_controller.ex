@@ -10,7 +10,11 @@ defmodule FroggyWeb.AssignmentController do
   end
 
   def new(conn, _params) do
-    changeset = School.change_assignment(%Assignment{})
+    today =
+      Timex.now("EST5EDT")
+      |> Timex.to_date()
+
+    changeset = School.change_assignment(%Assignment{due_date: today})
     render(conn, "new.html", changeset: changeset)
   end
 
