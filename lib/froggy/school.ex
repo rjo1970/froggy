@@ -147,11 +147,8 @@ defmodule Froggy.School do
       |> Enum.map(fn {a, b} -> {b, a} end)
       |> Map.new()
 
-    {day, _} = Date.day_of_era(assignment.due_date)
-
-    day_index = rem(day, 7)
-
-    dow[day_index]
+    day = Date.day_of_week(assignment.due_date)
+    dow[day]
   end
 
   def complete(assignment_id) do
