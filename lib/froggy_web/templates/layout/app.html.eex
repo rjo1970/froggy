@@ -5,15 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Froggy Keeping Homework Green</title>
+    <link href="https://fonts.googleapis.com/css?family=Londrina+Solid" rel="stylesheet">
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <link href="https://fonts.googleapis.com/css?family=Gentium+Basic" rel="stylesheet">
   </head>
   <body>
     <header>
       <section class="container">
+        <img src="<%= Routes.static_path(@conn, "/images/small-frog.png") %>"/>
         <nav role="navigation">
           <ul>
-		  <li><%= link "Edit Assignments...", to: Routes.assignment_path(@conn, :index) %></li>
+            <li><%= link "List", to: Routes.page_path(@conn, :index), id: "front-page" %></li>
+            <li><%= link "Add", to: Routes.assignment_path(@conn, :new) %></li>
+      		  <li><%= link "Edit", to: Routes.assignment_path(@conn, :index) %></li>
           </ul>
         </nav>
       </section>

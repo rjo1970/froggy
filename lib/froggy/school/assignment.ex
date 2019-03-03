@@ -2,7 +2,6 @@ defmodule Froggy.School.Assignment do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "assignments" do
     field :description, :string
     field :due_date, :date

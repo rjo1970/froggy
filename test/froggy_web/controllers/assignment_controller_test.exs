@@ -3,8 +3,18 @@ defmodule FroggyWeb.AssignmentControllerTest do
 
   alias Froggy.School
 
-  @create_attrs %{description: "some description", due_date: ~D[2010-04-17], student: "some student", subject: "some subject"}
-  @update_attrs %{description: "some updated description", due_date: ~D[2011-05-18], student: "some updated student", subject: "some updated subject"}
+  @create_attrs %{
+    description: "some description",
+    due_date: ~D[2010-04-17],
+    student: "some student",
+    subject: "some subject"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    due_date: ~D[2011-05-18],
+    student: "some updated student",
+    subject: "some updated subject"
+  }
   @invalid_attrs %{description: nil, due_date: nil, student: nil, subject: nil}
 
   def fixture(:assignment) do
@@ -15,7 +25,7 @@ defmodule FroggyWeb.AssignmentControllerTest do
   describe "index" do
     test "lists all assignments", %{conn: conn} do
       conn = get(conn, Routes.assignment_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Assignments"
+      assert html_response(conn, 200) =~ "All Assignments"
     end
   end
 
@@ -56,7 +66,9 @@ defmodule FroggyWeb.AssignmentControllerTest do
     setup [:create_assignment]
 
     test "redirects when data is valid", %{conn: conn, assignment: assignment} do
-      conn = put(conn, Routes.assignment_path(conn, :update, assignment), assignment: @update_attrs)
+      conn =
+        put(conn, Routes.assignment_path(conn, :update, assignment), assignment: @update_attrs)
+
       assert redirected_to(conn) == Routes.assignment_path(conn, :show, assignment)
 
       conn = get(conn, Routes.assignment_path(conn, :show, assignment))
@@ -64,7 +76,9 @@ defmodule FroggyWeb.AssignmentControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, assignment: assignment} do
-      conn = put(conn, Routes.assignment_path(conn, :update, assignment), assignment: @invalid_attrs)
+      conn =
+        put(conn, Routes.assignment_path(conn, :update, assignment), assignment: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Assignment"
     end
   end
@@ -75,6 +89,7 @@ defmodule FroggyWeb.AssignmentControllerTest do
     test "deletes chosen assignment", %{conn: conn, assignment: assignment} do
       conn = delete(conn, Routes.assignment_path(conn, :delete, assignment))
       assert redirected_to(conn) == Routes.assignment_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.assignment_path(conn, :show, assignment))
       end

@@ -1,4 +1,4 @@
-<h1>Listing Assignments</h1>
+<h1>All Assignments</h1>
 
 <table>
   <thead>
@@ -28,5 +28,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Assignment", to: Routes.assignment_path(@conn, :new) %></span>

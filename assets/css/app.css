@@ -1,11 +1,45 @@
 /* This file is for your main application css. */
 
-.due-0 { padding: 1em; border-style: dashed; border-color: red; border-width: 5px; }
-.due-1 { padding: 1em; border-style: dashed; border-color: #800; border-width: 5px; }
-.due-2 { padding: 1em; border-style: dashed; border-color: #440; border-width: 5px; }
-.due-3 { padding: 1em; border-style: dashed; border-color: #480; border-width: 5px; }
-.due-4 { padding: 1em; border-style: dashed; border-color: #480; border-width: 5px; }
-.due-5 { padding: 1em; border-style: dashed; border-color: #080; border-width: 5px; }
+/*
+Our color scheme.  It's not easy being green.
+#E8911A,
+#3D8C3B,
+#AB4F09,
+#3B7323,
+#237034,
+#2C6C2B,
+#115D30,
+#1A5129 */
 
+.due {
+    padding: 1em;
+    background-color: rgb(209, 209, 209);
+    border-width: 0.25em;
+    border-style: dashed;
+}
+
+.due-0 {
+    border-color: red;
+}
+
+.due-1 {
+    border-color: #800;
+}
+
+.due-2 {
+    border-color: #440;
+}
+
+.due-3 {
+    border-color: #480;
+}
+
+.due-4 {
+    border-color: #480;
+}
+
+.due-5 {
+    border-color: #080;
+}
 
 @import "./phoenix.css";

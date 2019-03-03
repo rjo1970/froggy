@@ -18,7 +18,8 @@ defmodule Froggy.School do
 
   """
   def list_assignments do
-    Repo.all(Assignment)
+    from(a in Assignment, order_by: [desc: a.due_date])
+    |> Repo.all()
   end
 
   @doc """

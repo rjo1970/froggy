@@ -8,11 +8,10 @@ defmodule Froggy.Repo.Migrations.CreateAssignments do
       add :description, :text, null: false
       add :due_date, :date, null: false
       add :done, :boolean, null: false, default: false
-      
+
       timestamps()
     end
 
     create index(:assignments, [:student, :due_date, :done])
-
   end
 end
