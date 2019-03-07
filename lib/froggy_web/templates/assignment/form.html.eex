@@ -5,16 +5,13 @@
     </div>
   <% end %>
 
-  <%= label f, :student %>
-  <%= text_input f, :student %>
+  <%= text_input f, :student, placeholder: "Student Name" %>
   <%= error_tag f, :student %>
 
-  <%= label f, :subject %>
-  <%= text_input f, :subject %>
+  <%= text_input f, :subject, placeholder: "Subject" %>
   <%= error_tag f, :subject %>
 
-  <%= label f, :description %>
-  <%= textarea f, :description %>
+  <%= textarea f, :description, placeholder: "Description" %>
   <%= error_tag f, :description %>
 
   <%= label f, :due_date %>

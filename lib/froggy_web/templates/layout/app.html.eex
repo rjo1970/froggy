@@ -11,7 +11,7 @@
   <body>
     <header>
       <section class="container">
-        <img src="<%= Routes.static_path(@conn, "/images/small-frog.png") %>"/>
+        <img src="<%= Routes.static_path(@conn, "/images/small-frog.png") %>" alt="Froggy"/>
         <nav role="navigation">
           <ul>
             <li><%= link "List", to: Routes.page_path(@conn, :index), id: "front-page" %></li>

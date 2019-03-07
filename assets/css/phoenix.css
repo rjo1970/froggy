@@ -20,7 +20,7 @@ html {
 
 body {
     background-color: rgb(161, 197, 160);
-    color: #1A5129;
+    color: #292010;
     font-size: 1.6em;
     font-weight: 300;
     line-height: 1.6
@@ -550,7 +550,7 @@ h6 {
     letter-spacing: -.1rem;
     margin-bottom: 2.0rem;
     margin-top: 0;
-    color: rgb(103, 93, 2);
+    color: #AB4805;
 }
 
 h1 {
@@ -770,10 +770,7 @@ header nav li {
     padding-right: 0.5em;
 }
 
-a {
-    color: white;
-}
-
+a,
 a:visited {
     color: white;
 }
